@@ -7,12 +7,10 @@ const AppLayout = async ({ children }: { children: React.ReactNode }) => {
   const { session } = await getUserAuth();
   if (!session) redirect("/auth/signin");
   return (
-    <div>
-      <div className="flex flex-col container">
-        <NavBar />
-      </div>
-      {children}
-    </div>
+    <main className="flex flex-col container min-h-screen">
+      <NavBar />
+      <section className="flex flex-col flex-grow">{children}</section>
+    </main>
   );
 };
 

@@ -15,11 +15,31 @@ const NavMenu = () => {
       <NavigationMenuList>
         <NavigationMenuItem>
           <Link
-            href="/docs"
+            href="#"
             legacyBehavior
             passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
+              Item 1
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link
+            href="#"
+            legacyBehavior
+            passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Item 2
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link
+            href="#"
+            legacyBehavior
+            passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Item 3
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

@@ -4,11 +4,11 @@ import NavStatus from "./NavStatus";
 
 const NavBar = () => {
   return (
-    <div className="flex justify-between items-center h-16">
-      <h1>Title</h1>
+    <nav className="flex justify-between items-center h-16">
+      <h1 className="text-3xl">Mesh App</h1>
       <NavMenu />
       <NavStatus />
-    </div>
+    </nav>
   );
 };
 
