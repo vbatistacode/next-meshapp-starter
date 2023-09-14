@@ -1,12 +1,18 @@
-import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
-import { z } from 'zod';
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import { z } from "zod";
 import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
+import { nanoid } from "nanoid";
+import { user } from "./auth";
 
 export const computers = sqliteTable("computers", {
-  id: integer("id").primaryKey(),
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => nanoid()),
   brand: text("brand").notNull(),
   cores: integer("cores").notNull(),
+  user: text("user_id").references(() => user.id, { onDelete: "cascade" }),
 });
+
 // Schema for CRUD - used to validate API requests
 export const insertComputerSchema = createInsertSchema(computers);
 export const selectComputerSchema = createSelectSchema(computers);
