@@ -12,14 +12,11 @@ export const authRouter = router({
       z.object({ name: z.string(), email: z.string(), password: z.string() })
     )
     .mutation(async ({ input }) => {
-      console.log("inside trpc mutation");
-
       const [findUser] = await db
         .select()
         .from(user)
         .where(eq(user.email, input.email));
 
-      console.log("find user:", findUser);
       if (!!findUser) {
         console.log("inside findUser conditional");
         throw new TRPCError({
@@ -29,14 +26,13 @@ export const authRouter = router({
       }
 
       // hash password
-      const hashPass = await hash(input.password);
-      console.log("hash password:", hashPass);
+      const hashPass = await hash(input.password, 10);
 
       // register new user
       const newUser = await db
         .insert(user)
         .values({ name: input.name, email: input.email, password: hashPass });
-      console.log("new user:", newUser);
+
       return newUser;
     }),
 
